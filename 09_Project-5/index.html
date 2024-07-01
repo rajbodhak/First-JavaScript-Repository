@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            background-color: #414141;
+            color: rgb(211, 211, 211);
+            padding: 100px;
+        }
+        h1 {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin-bottom: 50px;
+        }
+        .btn {
+            padding: 5px 20px;
+            margin: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class = 'head'> Click Start button to Change Background Colors and Click Stop button to stop</h1>
+    <button class="btn start">Start</button>
+    <button class="btn stop">Stop</button>
+</body>
+
+<script>
+    'use strict'
+
+    const startBtn = document.querySelector('.start');
+    const stopBtn = document.querySelector('.stop');
+    const body = document.querySelector('body');
+    
+    // <!--- RGB Color Generator -->
+    // const randomNumGenerator = function() {
+    //     let randomNum = Math.floor((Math.random() * 256) + 1);
+    //     return randomNum;
+    // }
+
+    // let randomBodyColor = function() {
+    //     const r = randomNumGenerator();
+    //     const g = randomNumGenerator();
+    //     const b = randomNumGenerator();
+    //     console.log(r, g, b);
+    //     body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    // }
+
+    // <!---Hex color Generator -->
+
+    let randomHexColor = function() {
+        const hex = '0123456789ABCDEF';
+        let color = '#';
+        for(let i = 0; i < 6; i++) {
+            color += hex[Math.floor(Math.random()* 16)]
+        }
+        return color;
+    };
+
+    let randomBodyColor = function() {
+        body.style.backgroundColor = randomHexColor();
+    }
+
+
+
+    console.log(randomHexColor());
+    
+    let intervalId;
+
+    startBtn.addEventListener('click', function(e) {
+        if(!intervalId) { // Check if interval is already Running
+            intervalId = setInterval (() => randomBodyColor(), 1000);
+            startBtn.disabled = true;  //Disable start Button
+        }    
+    });
+
+    stopBtn.addEventListener('click', function(e) {
+        clearInterval(intervalId); // Stop interval
+        intervalId = null; // Reset to interval id to Null
+        startBtn.disabled = false; // Re-enable Start Button
+    })
+</script>
+
+</html>
