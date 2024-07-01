@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Create</title>
+
+    <style>
+        .header{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        };
+    </style>
+</head>
+<body style="background: linear-gradient(180deg, rgb(15, 15, 71), rgb(99, 5, 5)); height: 100vh;">
+    
+
+</body>
+
+<script>
+    const div = document.createElement('div');
+    console.log(div);
+    div.id = 'header';
+    div.className = 'main';
+    div.setAttribute('section','header');
+    div.style.backgroundColor = 'red';
+    div.style.padding = '20px';
+    div.style.fontSize = '2rem';
+    div.classList = 'header';
+    const addText = document.createTextNode('Eat - Code - Sleep');
+    div.appendChild(addText);
+
+    document.body.appendChild(div);
+</script>
+</html>
