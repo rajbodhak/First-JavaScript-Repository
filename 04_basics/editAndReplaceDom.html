@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit And Replace</title>
+</head>
+<body style="background-color: #212121; color: #fff; font-size: 1.5rem;">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+<script>
+    'use strict';
+    const languages = document.querySelector('.language');
+
+    //Function for a add a list item
+    function addLiList(langName) {
+        const li = document.createElement('li');
+        li.appendChild(document.createTextNode(langName));
+        languages.appendChild(li);
+    }
+    addLiList('TypeScript');
+    addLiList('C++');
+
+    //Function for a replace a list item
+    function replacelist(previousLi, newLi) {
+        const listItems = Array.from(languages.getElementsByTagName('li'));
+        listItems.forEach(item => {
+            if (item.textContent === previousLi) {
+                item.textContent = newLi;
+            }
+        });
+    }
+    replacelist('C++', 'Java');
+
+    //Function for a delete a list item
+    function deleteLi(tergetLi) {
+        const listItems = Array.from(languages.getElementsByTagName('li'));
+        listItems.forEach(item => {
+            if (item.textContent === tergetLi) {
+                item.remove();
+            }
+        });
+    }
+    deleteLi('Java');
+</script>
+</html>
