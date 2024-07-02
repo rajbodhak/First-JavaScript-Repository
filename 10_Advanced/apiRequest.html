@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api Request</title>
+</head>
+<body style="background-color: #313131;">
+    
+</body>
+
+<script>
+    // console.log('Hello');
+    const requestUrl = 'https://api.github.com/users/hiteshchoudhary'; 
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        // if (xhr.readyState === 0) {
+        //     console.log("State 0: UNSENT");
+        // } else if (xhr.readyState === 1) {
+        //     console.log("State 1: OPENED");
+        // } else if (xhr.readyState === 2) {
+        //     console.log("State 2: HEADERS_RECEIVED");
+        // } else if (xhr.readyState === 3) {
+        //     console.log("State 3: LOADING");
+        // } else if (xhr.readyState === 4) {
+        //     console.log("State 4: DONE");
+        // }
+        if(xhr.readyState === 4) {
+            const data = JSON.parse(this.responseText);
+            const source = data.avatar_url;
+            const followers = data.followers;
+            console.log(followers);
+
+            //Create H1
+            const h1 = document.createElement('h1');
+            h1.textContent = data.login;
+            h1.style.color = '#fff';
+
+            h1.textContent = h1.textContent.charAt(0).toUpperCase() + h1.textContent.slice(1,6) + ' ' + h1.textContent.charAt(6).toUpperCase() + h1.textContent.slice(7);
+              
+
+            //Create p tag
+            const p = document.createElement('p');
+            p.textContent = followers;
+            p.style.color = '#fff';
+
+            //Create Image element
+            const image = document.createElement('img');
+            image.setAttribute('src', source);
+            image.setAttribute('alt', 'User Avatar');
+
+            //Append Child
+            const body = document.querySelector('body');
+            body.appendChild(h1);
+            body.appendChild(image);
+            body.appendChild(p);
+            
+        }
+    }
+    xhr.open('GET', requestUrl);
+    xhr.send();
+    
+
+</script>
+</html>
